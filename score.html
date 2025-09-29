@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prepitus - Premium Exam Preparation</title>
+    <link rel="icon" href="images/p.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="score.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-text">
+                        <i class="fas fa-graduation-cap"></i>
+                        Prepitus
+                    </div>
+                </div>
+                <nav id="main-nav">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#">Knowledge Concept</a></li>
+                        <li><a href="#">Assigned Activities</a></li>
+                        <li><a href="#">Exam</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </nav>
+                <div class="auth-buttons">
+                    <a href="#" class="btn btn-outline" id="login-btn">Login</a>
+                    <a href="#" class="btn btn-primary" id="signup-btn">Sign Up</a>
+                </div>
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Auth Modal -->
+    <div class="auth-modal" id="auth-modal">
+        <button class="close-modal" id="close-modal">&times;</button>
+        <div class="auth-container">
+            <div class="auth-left">
+                <h2>Welcome to Prepitus</h2>
+                <p>Register now and experience the new digital revolution</p>
+                <img src="images/img1.jpg" alt="Prepitus">
+            </div>
+
+            <div class="auth-right">
+                <!-- Login Page -->
+                <div class="page active" id="login-page">
+                    <h2>Login</h2>
+                    <p>Enter your credentials to access your account</p>
+
+                    <form>
+                        <div class="form-group">
+                            <label for="email">Enter email</label>
+                            <input type="email" id="email" class="form-control" placeholder="Your email address">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" class="form-control" placeholder="Your password">
+                        </div>
+
+                        <a href="#" class="forgot-password">Forgot Password?</a>
+
+                        <button type="button" class="auth-btn">Login</button>
+                    </form>
+
+                    <div class="auth-links">
+                        Don't have an account? <a href="#" onclick="showPage('register-page')">Sign Up</a>
+                    </div>
+                </div>
+
+                <!-- Register Page -->
+                <div class="page" id="register-page">
+                    <h2>Register</h2>
+                    <p>Create your account to get started</p>
+
+                    <form>
+                        <div class="user-type-select">
+                            <div class="user-type" onclick="selectUserType(this)">
+                                <i class="fas fa-user"></i>
+                                <div>Student</div>
+                            </div>
+                            <div class="user-type" onclick="selectUserType(this)">
+                                <i class="fas fa-building"></i>
+                                <div>Professor</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="username">Enter username*</label>
+                            <input type="text" id="username" class="form-control" placeholder="Choose a username">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="reg-email">Enter Email Address*</label>
+                            <input type="email" id="reg-email" class="form-control" placeholder="Your email address">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="reg-password">Enter password*</label>
+                            <input type="password" id="reg-password" class="form-control"
+                                placeholder="Create a password">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirm-password">Enter confirm password*</label>
+                            <input type="password" id="confirm-password" class="form-control"
+                                placeholder="Confirm your password">
+                        </div>
+
+                        <button type="button" class="auth-btn">Next</button>
+                    </form>
+
+                    <div class="auth-links">
+                        Already have an account? <a href="#" onclick="showPage('login-page')">Login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <main class="container">
+        <div class="page-header">
+            <h1>Digital SAT Score Calculator</h1>
+            <p>Estimate your Digital SAT score based on your performance in each module. Our calculator uses the official scoring methodology to provide accurate predictions and match you with suitable colleges.</p>
+        </div>
+        
+        <div class="calculator-container">
+            <div class="calculator-header">
+                <h2>SAT Score Calculator</h2>
+                <div class="powered-by">Powered by <span>Prepitus</span></div>
+            </div>
+            
+            <div class="instructions">
+                <h3>Instructions</h3>
+                <p>Enter the number of correctly answered questions for each module using the sliders below to calculate your final score.</p>
+                <p>For adaptive test scores, check the 'Adaptive' box - your module 2 scores will be weighed differently depending on your module 1 scores for each section.</p>
+                <ul>
+                    <li>Use the sliders to input your correct answers for each module</li>
+                    <li>Check the 'Adaptive' box for accurate adaptive testing scoring</li>
+                    <li>Your total score and section scores will update automatically</li>
+                    <li>See which colleges match your score range</li>
+                </ul>
+            </div>
+            
+            <div class="calculator-content">
+                <div class="section-controls">
+                    <div class="section-title">Reading and Writing</div>
+                    
+                    <div class="module-control">
+                        <div class="module-label">
+                            <span class="module-name">Module 1</span>
+                            <span class="module-value" id="rw1-value">27</span>
+                        </div>
+                        <div class="slider-container">
+                            <input type="range" min="0" max="27" value="27" class="slider" id="rw1-slider">
+                        </div>
+                    </div>
+                    
+                    <div class="module-control">
+                        <div class="module-label">
+                            <span class="module-name">Module 2</span>
+                            <span class="module-value" id="rw2-value">27</span>
+                        </div>
+                        <div class="slider-container">
+                            <input type="range" min="0" max="27" value="27" class="slider" id="rw2-slider">
+                        </div>
+                    </div>
+                    
+                    <div class="section-title" style="margin-top: 2rem;">Math</div>
+                    
+                    <div class="module-control">
+                        <div class="module-label">
+                            <span class="module-name">Module 1</span>
+                            <span class="module-value" id="math1-value">22</span>
+                        </div>
+                        <div class="slider-container">
+                            <input type="range" min="0" max="22" value="22" class="slider" id="math1-slider">
+                        </div>
+                    </div>
+                    
+                    <div class="module-control">
+                        <div class="module-label">
+                            <span class="module-name">Module 2</span>
+                            <span class="module-value" id="math2-value">22</span>
+                        </div>
+                        <div class="slider-container">
+                            <input type="range" min="0" max="22" value="22" class="slider" id="math2-slider">
+                        </div>
+                    </div>
+                    
+                    <div class="adaptive-toggle">
+                        <input type="checkbox" id="adaptive-toggle" checked>
+                        <label for="adaptive-toggle">Adaptive Scoring</label>
+                    </div>
+                </div>
+                
+                <div class="results-section">
+                    <div class="total-score">
+                        <div>TOTAL SCORE</div>
+                        <div class="total-score-value" id="total-score">1600</div>
+                        <div class="total-score-range">400 - 1600</div>
+                    </div>
+                    
+                    <div class="section-scores">
+                        <div class="score-card">
+                            <div class="score-card-title">Reading and Writing</div>
+                            <div class="score-card-value" id="rw-score">800</div>
+                            <div class="score-card-range">200 - 800</div>
+                        </div>
+                        
+                        <div class="score-card">
+                            <div class="score-card-title">Math</div>
+                            <div class="score-card-value" id="math-score">800</div>
+                            <div class="score-card-range">200 - 800</div>
+                        </div>
+                    </div>
+                    
+                    <div class="score-breakdown">
+                        <h3>Score Breakdown</h3>
+                        <table class="breakdown-table">
+                            <thead>
+                                <tr>
+                                    <th>Section</th>
+                                    <th>Module</th>
+                                    <th>Correct Answers</th>
+                                    <th>Module Score</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Reading & Writing</td>
+                                    <td>Module 1</td>
+                                    <td id="rw1-breakdown">27/27</td>
+                                    <td class="module-score" id="rw1-module-score">400</td>
+                                </tr>
+                                <tr>
+                                    <td>Reading & Writing</td>
+                                    <td>Module 2</td>
+                                    <td id="rw2-breakdown">27/27</td>
+                                    <td class="module-score" id="rw2-module-score">400</td>
+                                </tr>
+                                <tr>
+                                    <td>Math</td>
+                                    <td>Module 1</td>
+                                    <td id="math1-breakdown">22/22</td>
+                                    <td class="module-score" id="math1-module-score">400</td>
+                                </tr>
+                                <tr>
+                                    <td>Math</td>
+                                    <td>Module 2</td>
+                                    <td id="math2-breakdown">22/22</td>
+                                    <td class="module-score" id="math2-module-score">400</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- College Matching Section -->
+        <div class="college-matching">
+            <h2>Qualified Colleges Based on Your Score</h2>
+            
+            <div class="college-results-header">
+                <div class="college-count">Displaying <span id="display-start">1</span> to <span id="display-end">8</span> of <span id="total-colleges">55</span> results</div>
+                <div class="college-filters">
+                    <select class="filter-select" id="sort-by">
+                        <option value="match">Sort by Match</option>
+                        <option value="name">Sort by Name</option>
+                        <option value="score-high">Sort by Score (High to Low)</option>
+                        <option value="score-low">Sort by Score (Low to High)</option>
+                    </select>
+                    <select class="filter-select" id="match-filter">
+                        <option value="all">All Matches</option>
+                        <option value="high">High Match Only</option>
+                        <option value="medium">Medium Match Only</option>
+                        <option value="low">Low Match Only</option>
+                    </select>
+                </div>
+            </div>
+            
+            <table class="college-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>School Name</th>
+                        <th>Combined SAT</th>
+                        <th>Reading & Writing</th>
+                        <th>Math</th>
+                        <th>Match</th>
+                    </tr>
+                </thead>
+                <tbody id="college-results">
+                    <!-- College results will be populated by JavaScript -->
+                </tbody>
+            </table>
+            
+            <div class="pagination" id="pagination">
+                <!-- Pagination buttons will be populated by JavaScript -->
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Prepitus</h3>
+                    <p>Your partner in exam preparation success.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Products</h3>
+                    <ul>
+                        <li><a href="#">Courses</a></li>
+                        <li><a href="#">Practice Tests</a></li>
+                        <li><a href="#">Study Materials</a></li>
+                        <li><a href="#">Mock Exams</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Prepitus. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="score.js"></script>
+</body>
+</html>
